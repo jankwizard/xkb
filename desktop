@@ -1,0 +1,33 @@
+// based on a keyboard map from an 'xkb/symbols/gb' file
+
+// xev:
+// keycode 113 = (right) AltGr
+// keycode 117 = (right) context key
+
+// symbols/xfree86:
+//    <RALT> = 113;
+//    <MENU> = 117;
+
+// gb:
+//    include "level3(ralt_switch_multikey)"
+// to remove this you need to set TWO_LEVEL
+
+default  partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+
+    // Describes the differences between a very simple en_US
+    // keyboard and a very simple U.K. keyboard layout defined by
+    // the SVR4 European Language Supplement and sometimes also
+    // known as the IBM 166 layout.
+
+    include "gb"
+
+    name[Group1]="English (custom)";
+
+    key <MENU> { [ Super_R ] };
+    key <RALT> { type[Group1] = "TWO_LEVEL",
+                 symbols[Group1] = [ Alt_R, Alt_R ] };
+
+    include "capslock(swapescape)"
+};
+

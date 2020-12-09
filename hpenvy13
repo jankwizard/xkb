@@ -1,0 +1,36 @@
+default  partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+
+    include "gb(basic)"
+
+    name[Group1]="English (UK) ~ hpenvy13";
+
+// Note: ctrl/fn/win/alt/altgr + F4 -> F4, anything
+//       else + F4 -> win+p. must be a fw thing...
+//       prevents mapping \->rctrl, as ctrl+f4 won't work!
+
+// Keyboard key | Input key
+// ............................
+// alt gr       | R_Ctrl
+// backslash    | R_Super
+// prt sc       | backslash
+// pause        | print screen
+// caps         | esc
+// esc          | caps
+
+    include "capslock(swapescape)"
+    replace key <PAUS> {
+	type= "PC_ALT_LEVEL2",
+	symbols[Group1]= [ Print, Sys_Req ]
+    };
+    replace key <RALT> { [ Control_R, Control_R ] };
+    replace key <LSGT> { [ Super_R ] };
+    replace key <PRSC> {
+	type= "TWO_LEVEL", //pc105 previously set to "PC_ALT_LEVEL2"
+	symbols[Group1]= [ backslash,        bar,          bar,    brokenbar ]
+    };
+    modifier_map Mod4    { <LSGT> };
+    modifier_map Control { <RALT> };
+
+};
+
