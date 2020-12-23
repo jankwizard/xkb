@@ -14,9 +14,11 @@ xkb_symbols "basic" {
 // alt gr       | R_Ctrl
 // backslash    | R_Super
 // prt sc       | backslash
+// shift-prt sc | not
 // pause        | print screen
 // caps         | esc
 // esc          | caps
+// ¬            | |
 
     include "capslock(swapescape)"
     replace key <PAUS> {
@@ -25,9 +27,10 @@ xkb_symbols "basic" {
     };
     replace key <RALT> { [ Control_R, Control_R ] };
     replace key <LSGT> { [ Super_R ] };
+    replace key <TLDE> { [ grave, bar ] };
     replace key <PRSC> {
 	type= "TWO_LEVEL", //pc105 previously set to "PC_ALT_LEVEL2"
-	symbols[Group1]= [ backslash,        bar,          bar,    brokenbar ]
+	symbols[Group1]= [ backslash, notsign ]
     };
     modifier_map Mod4    { <LSGT> };
     modifier_map Control { <RALT> };
